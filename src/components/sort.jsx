@@ -1,103 +1,57 @@
 export const completedMeetingsSort = (setUsers) => {
   setUsers((prevState) => {
-    let a = prevState;
-    a.map(() => a.sort((z, b) => b.completedMeetings - z.completedMeetings));
-    return a.filter(() =>
-      a.sort((z, b) => b.completedMeetings - z.completedMeetings)
-    );
+    let a = [...prevState];
+    a.sort((z, b) => b.completedMeetings - z.completedMeetings);
+    return a.filter(() => 1);
   });
 };
 
 export const completedMeetingsSortDown = (setUsers) => {
   setUsers((prevState) => {
-    let a = prevState;
-    a.map(() => a.sort((z, b) => z.completedMeetings - b.completedMeetings));
-    return a.filter(() =>
-      a.sort((z, b) => z.completedMeetings - b.completedMeetings)
-    );
+    let a = [...prevState];
+    a.sort((z, b) => z.completedMeetings - b.completedMeetings);
+    return a.filter(() => 1);
   });
 };
 
 export const ratingSortUp = (setUsers) => {
   setUsers((prevState) => {
-    let a = prevState;
-    a.map(() => a.sort((z, b) => b.rate - z.rate));
-    return a.filter(() => a.sort((z, b) => b.rate - z.rate));
+    let a = [...prevState];
+    a.sort((z, b) => b.rate - z.rate);
+    return a.filter(() => 1);
   });
 };
 
 export const ratingSortDown = (setUsers) => {
   setUsers((prevState) => {
-    let a = prevState;
-    a.map(() => a.sort((z, b) => z.rate - b.rate));
-    return a.filter(() => a.sort((z, b) => z.rate - b.rate));
+    let a = [...prevState];
+    a.sort((z, b) => z.rate - b.rate);
+    return a.filter(() => 1);
   });
 };
 
 export const nameSortUp = (setUsers) => {
   setUsers((prevState) => {
-    let a = prevState;
-    a.map(() =>
-      a.sort((z, b) => {
-        let nameA = z.name.toLowerCase();
-        let nameB = b.name.toLowerCase();
-        if (nameA < nameB) {
-          console.log(nameA, nameB);
-          return -1;
-        } else if (nameA > nameB) {
-          return 1;
-        } else {
-          return 0;
-        }
-      })
-    );
-    return a.filter(() =>
-      a.sort((z, b) => {
-        let nameA = z.name.toLowerCase();
-        let nameB = b.name.toLowerCase();
-        if (nameA < nameB) {
-          console.log(nameA, nameB);
-          return -1;
-        } else if (nameA > nameB) {
-          return 1;
-        } else {
-          return 0;
-        }
-      })
-    );
+    let a = [...prevState];
+    a.sort((z, b) => {
+      let nameA = z.name.toLowerCase();
+      let nameB = b.name.toLowerCase();
+      return nameA < nameB ? -1 : 1;
+    });
+
+    return a.filter(() => 1);
   });
 };
 
 export const nameSortDown = (setUsers) => {
   setUsers((prevState) => {
-    let a = prevState;
-    a.map(() =>
-      a.sort((z, b) => {
-        let nameA = z.name.toLowerCase();
-        let nameB = b.name.toLowerCase();
-        if (nameA < nameB) {
-          console.log(nameA, nameB);
-          return 1;
-        } else if (nameA > nameB) {
-          return -1;
-        } else {
-          return 0;
-        }
-      })
-    );
-    return a.filter(() =>
-      a.sort((z, b) => {
-        let nameA = z.name.toLowerCase();
-        let nameB = b.name.toLowerCase();
-        if (nameA < nameB) {
-          console.log(nameA, nameB);
-          return 1;
-        } else if (nameA > nameB) {
-          return -1;
-        } else {
-          return 0;
-        }
-      })
-    );
+    let a = [...prevState];
+    a.sort((z, b) => {
+      let nameA = z.name.toLowerCase();
+      let nameB = b.name.toLowerCase();
+      return nameA < nameB ? 1 : -1;
+    });
+
+    return a.filter(() => 1);
   });
 };

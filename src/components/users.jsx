@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../index.css";
 import renderData from "./renderData";
 import handleTagChange from "./userDelete";
+import handleBookRender from "./bookmarkRender";
+import handleBookTap from "./handleBookmark";
 import table from "./table";
 
 const Users = () => {
@@ -11,17 +13,10 @@ const Users = () => {
   const count = users.length + 1;
 
   const renderUsers = () => {
-    // let a = [];
-    // users.forEach((e, i) => {
-    //   a[i] = e.name.concat(users[e]);
-    // });
-    // console.log(a.sort());
     return users.map((e) => {
       return (
         <tr key={e._id}>
-          <th type="button" onClick={() => console.log("ok")}>
-            {e.name}
-          </th>
+          <th>{e.name}</th>
           <td>{renderData(e, setUsers)}</td>
           <td>{e.profession.name}</td>
           <td>{e.completedMeetings}</td>
@@ -29,10 +24,20 @@ const Users = () => {
           <td>
             <button
               type="button"
+              id="btn"
+              className="btn btn-danger"
+              onClick={() => handleBookTap(e, setUsers)}
+            >
+              {handleBookRender(e)}
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
               className="btn btn-danger"
               onClick={() => handleTagChange(e, setUsers)}
             >
-              delete <i class="bi bi-emoji-angry-fill"></i>
+              delete <i className="bi bi-emoji-angry-fill"></i>
             </button>
           </td>
         </tr>
