@@ -1,17 +1,22 @@
 import React from "react";
 import { handleQualitiesChange } from "./handleQualitiesChange";
 
-const renderData = (el, setUsers, handlePageChange) => {
-    const b = el.qualities.map((e, i) => {
-        const name = e.name;
-        const clas = (e.className = `btn btn-${e.color} btn-sm m-2 btn-user`);
+const renderData = (userMassiv, setUsers, handlePageChange) => {
+    return userMassiv.qualities.map((element, index) => {
+        const name = element.name;
+        const elementClass =
+            (element.className = `btn btn-${element.color} btn-sm m-2 btn-user`);
         return (
-            <div key={i} className={clas}>
+            <div key={index} className={elementClass}>
                 <p
                     type="button"
                     className="p_name"
                     onClick={() =>
-                        handleQualitiesChange(e, setUsers, handlePageChange)
+                        handleQualitiesChange(
+                            element,
+                            setUsers,
+                            handlePageChange
+                        )
                     }
                 >
                     {name}
@@ -19,8 +24,6 @@ const renderData = (el, setUsers, handlePageChange) => {
             </div>
         );
     });
-
-    return b;
 };
 
 export default renderData;

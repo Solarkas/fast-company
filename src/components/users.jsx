@@ -14,29 +14,39 @@ const Users = (props) => {
     const count = users.length;
 
     const renderUsers = (userCrop, handlePageChange) => {
-        return userCrop.map((e) => {
+        return userCrop.map((elementUserCrop) => {
             return (
-                <tr key={e._id}>
-                    <th>{e.name}</th>
-                    <td>{renderData(e, setUsers, handlePageChange)}</td>
-                    <td>{e.profession.name}</td>
-                    <td>{e.completedMeetings}</td>
-                    <td>{e.rate}</td>
+                <tr key={elementUserCrop._id}>
+                    <th>{elementUserCrop.name}</th>
+                    <td>
+                        {renderData(
+                            elementUserCrop,
+                            setUsers,
+                            handlePageChange
+                        )}
+                    </td>
+                    <td>{elementUserCrop.profession.name}</td>
+                    <td>{elementUserCrop.completedMeetings}</td>
+                    <td>{elementUserCrop.rate}</td>
                     <td>
                         <button
                             type="button"
                             id="btn"
                             className="btn btn-danger"
-                            onClick={() => handleBookTap(e, setUsers)}
+                            onClick={() =>
+                                handleBookTap(elementUserCrop, setUsers)
+                            }
                         >
-                            {handleBookRender(e)}
+                            {handleBookRender(elementUserCrop)}
                         </button>
                     </td>
                     <td>
                         <button
                             type="button"
                             className="btn btn-danger"
-                            onClick={() => handleTagChange(e, setUsers)}
+                            onClick={() =>
+                                handleTagChange(elementUserCrop, setUsers)
+                            }
                         >
                             delete <i className="bi bi-emoji-angry-fill"></i>
                         </button>
