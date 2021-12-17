@@ -1,4 +1,4 @@
-import people from "./renderUsers";
+import people from "./peopleCount";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {
     completedMeetingsSort,
@@ -13,6 +13,7 @@ import { paginate } from "../api/utils/paginate";
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import GroupList from "./groupList";
+import renderUsers from "./renderUsers";
 import api from "../api";
 
 const Table = (props) => {
@@ -33,10 +34,9 @@ const Table = (props) => {
         setCurrentPage(pageIndex);
     };
     const filteredUsers = selectedProf
-        ? props.users.filter((user) => {
-              console.log(user, selectedProf);
-              return user.profession === selectedProf;
-          })
+        ? props.users.filter(
+              (user) => user.profession.name === selectedProf.name
+          )
         : props.users;
     const count = filteredUsers.length;
     const userCrop = paginate(filteredUsers, currentPage, pageSize);
@@ -141,7 +141,7 @@ const Table = (props) => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody>{props.renderUsers(userCrop)}</tbody>
+                    <tbody>{renderUsers(userCrop)}</tbody>
                 </table>
 
                 <Pagination
