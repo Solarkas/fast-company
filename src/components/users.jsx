@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-// import api from "../api";
+import React, { useState, useEffect } from "react";
+import api from "../api";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "../index.css";
@@ -10,14 +10,14 @@ import handleBookTap from "./handleBookmark";
 import Table from "./table";
 import PropTypes from "prop-types";
 
-const Users = (props) => {
-    // console.log(props.usersList);
-    const [users, setUsers] = useState(props.usersList);
+const Users = () => {
+    const [users, setUsers] = useState();
+
+    useEffect(() => {
+        api.users.fetchAll().then((data) => setUsers(data));
+    }, []);
+
     const count = users.length;
-    // console.log("proprs-", props, api.users.fetchAll());
-    // useEffect(() => {
-    //     props.usersList.then((data) => setUsers(data));
-    // }, []);
 
     const renderUsers = (userCrop) => {
         return userCrop.map((elementUserCrop) => {
@@ -25,7 +25,7 @@ const Users = (props) => {
                 <tr key={elementUserCrop._id}>
                     <th>{elementUserCrop.name}</th>
                     <td>{renderData(elementUserCrop)}</td>
-                    {/* <td>{elementUserCrop.profession.name}</td> */}
+                    <td>{elementUserCrop.profession.name}</td>
                     <td>{elementUserCrop.completedMeetings}</td>
                     <td>{elementUserCrop.rate}</td>
                     <td>

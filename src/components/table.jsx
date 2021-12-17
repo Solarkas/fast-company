@@ -34,7 +34,7 @@ const Table = (props) => {
     };
     const filteredUsers = selectedProf
         ? props.users.filter((user) => {
-              console.log(user);
+              console.log(user, selectedProf);
               return user.profession === selectedProf;
           })
         : props.users;
