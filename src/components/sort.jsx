@@ -1,57 +1,73 @@
 export const completedMeetingsSort = (setUsers) => {
     setUsers((prevState) => {
-        const a = [...prevState];
-        a.sort((z, b) => b.completedMeetings - z.completedMeetings);
-        return a.filter(() => 1);
+        let newUserList = {};
+        const a = [...prevState.users];
+        const users = {
+            users: a.sort((z, b) => b.completedMeetings - z.completedMeetings)
+        };
+        return (newUserList = { ...newUserList, ...users });
     });
 };
 
 export const completedMeetingsSortDown = (setUsers) => {
     setUsers((prevState) => {
-        const a = [...prevState];
-        a.sort((z, b) => z.completedMeetings - b.completedMeetings);
-        return a.filter(() => 1);
+        let newUserList = {};
+        const a = [...prevState.users];
+        const users = {
+            users: a.sort((z, b) => z.completedMeetings - b.completedMeetings)
+        };
+        return (newUserList = { ...newUserList, ...users });
     });
 };
 
 export const ratingSortUp = (setUsers) => {
     setUsers((prevState) => {
-        const a = [...prevState];
-        a.sort((z, b) => b.rate - z.rate);
-        return a.filter(() => 1);
+        let newUserList = {};
+        const a = [...prevState.users];
+        const users = {
+            users: a.sort((z, b) => b.rate - z.rate)
+        };
+        return (newUserList = { ...newUserList, ...users });
     });
 };
 
 export const ratingSortDown = (setUsers) => {
     setUsers((prevState) => {
-        const a = [...prevState];
-        a.sort((z, b) => z.rate - b.rate);
-        return a.filter(() => 1);
+        let newUserList = {};
+        const a = [...prevState.users];
+        const users = {
+            users: a.sort((z, b) => z.rate - b.rate)
+        };
+        return (newUserList = { ...newUserList, ...users });
     });
 };
 
 export const nameSortUp = (setUsers) => {
     setUsers((prevState) => {
-        const a = [...prevState];
-        a.sort((z, b) => {
-            const nameA = z.name.toLowerCase();
-            const nameB = b.name.toLowerCase();
-            return nameA < nameB ? -1 : 1;
-        });
-
-        return a.filter(() => 1);
+        let newUserList = {};
+        const a = [...prevState.users];
+        const users = {
+            users: a.sort((z, b) => {
+                const nameA = z.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+                return nameA < nameB ? -1 : 1;
+            })
+        };
+        return (newUserList = { ...newUserList, ...users });
     });
 };
 
 export const nameSortDown = (setUsers) => {
     setUsers((prevState) => {
-        const a = [...prevState];
-        a.sort((z, b) => {
-            const nameA = z.name.toLowerCase();
-            const nameB = b.name.toLowerCase();
-            return nameA < nameB ? 1 : -1;
-        });
-
-        return a.filter(() => 1);
+        let newUserList = {};
+        const a = [...prevState.users];
+        const users = {
+            users: a.sort((z, b) => {
+                const nameA = z.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+                return nameA < nameB ? 1 : -1;
+            })
+        };
+        return (newUserList = { ...newUserList, ...users });
     });
 };

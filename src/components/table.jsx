@@ -33,6 +33,10 @@ const Table = (props) => {
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);
     };
+
+    const onSort = (item) => {
+        console.log(item);
+    };
     const filteredUsers = selectedProf
         ? props.users.filter(
               (user) => user.profession.name === selectedProf.name
@@ -48,6 +52,7 @@ const Table = (props) => {
     const clearFilter = () => {
         setSelectedProf();
     };
+
     return (
         <div className="d-flex">
             <div className="d-flex flex-column flex-shrink-0 p-3">
@@ -78,7 +83,7 @@ const Table = (props) => {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">
+                            <th onClick={() => onSort("name")} scope="col">
                                 Имя
                                 <p
                                     type="button"
@@ -96,8 +101,16 @@ const Table = (props) => {
                                 </p>
                             </th>
                             <th scope="col">Качества</th>
-                            <th scope="col">Проффессия</th>
-                            <th scope="col">
+                            <th
+                                onClick={() => onSort("profession.name")}
+                                scope="col"
+                            >
+                                Проффессия
+                            </th>
+                            <th
+                                onClick={() => onSort("completedMeetings")}
+                                scope="col"
+                            >
                                 Встретился раз
                                 <p
                                     type="button"
@@ -120,7 +133,7 @@ const Table = (props) => {
                                     <i className="bi bi-caret-down-fill"></i>
                                 </p>
                             </th>
-                            <th scope="col">
+                            <th onClick={() => onSort("rate")} scope="col">
                                 <p>Оценка</p>
                                 <p
                                     type="button"
@@ -139,9 +152,14 @@ const Table = (props) => {
                                     <i className="bi bi-caret-down-fill"></i>
                                 </p>
                             </th>
+                            <th onClick={() => onSort("bookmark")} scope="col">
+                                Избранное
+                            </th>
+                            <th />
                         </tr>
                     </thead>
-                    <tbody>{renderUsers(userCrop)}</tbody>
+
+                    <tbody>{renderUsers(userCrop, props.setUsers)}</tbody>
                 </table>
 
                 <Pagination

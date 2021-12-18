@@ -1,10 +1,12 @@
+import React from "react";
 import renderData from "./renderData";
 import handleTagChange from "./userDelete";
 import handleBookRender from "./bookmarkRender";
 import handleBookTap from "./handleBookmark";
 
-export const renderUsers = (userCrop) => {
+export const renderUsers = (userCrop, setUsers) => {
     return userCrop.map((elementUserCrop) => {
+        console.log(elementUserCrop, "aaaaa");
         return (
             <tr key={elementUserCrop._id}>
                 <th>{elementUserCrop.name}</th>

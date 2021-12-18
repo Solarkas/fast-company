@@ -1,5 +1,9 @@
 const handleTagChange = (id, setUsers) => {
-    setUsers((prevState) => prevState.filter((tag) => tag !== id));
+    setUsers((prevState) => {
+        let newUserList = {};
+        const users = { users: prevState.users.filter((tag) => tag !== id) };
+        return (newUserList = { ...newUserList, ...users });
+    });
 };
 
 export default handleTagChange;

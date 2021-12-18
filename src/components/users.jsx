@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 
 const Users = (props) => {
     const [list, setUsers] = useState(props);
-
     const count = list.users.length;
 
     return list.users.length !== 0 ? (
