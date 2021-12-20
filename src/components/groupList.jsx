@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const GroupList = ({
     items,
@@ -27,13 +26,6 @@ const GroupList = ({
             })}
         </ul>
     );
-};
-GroupList.propTypes = {
-    items: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    valueProperty: PropTypes.string.isRequired,
-    contentProperty: PropTypes.string.isRequired,
-    onItemSelect: PropTypes.func,
-    selectedItem: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
 export default GroupList;

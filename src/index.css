@@ -25,3 +25,7 @@ code {
     height: 25px;
     width: 25px;
 }
+
+.button {
+    background-image: url(https://cdn.icon-icons.com/icons2/2644/PNG/512/caret_down_fill_icon_159653.png);
+}
