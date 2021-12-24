@@ -10,9 +10,9 @@ import _ from "lodash";
 import TableHeader from "./tableHeader";
 import TableBody from "./tableBody";
 import handleTagChange from "./userDelete";
-
+import NewTable from "./newtable";
 import BookMark from "./bookmark";
-// import handleBookTap from "./handleBookmark";
+import QualitiesList from "./qualitiesList";
 
 const Table = (props) => {
     const pageSize = 4;
@@ -51,7 +51,13 @@ const Table = (props) => {
             name: "Имя",
             image: ""
         },
-        qualities: { name: "Качества" },
+        qualities: {
+            name: "Качества",
+            component: (user) => {
+                const asyncQualities = user.qualities || [];
+                return <QualitiesList qualities={asyncQualities} />;
+            }
+        },
         professions: { path: "profession.name", name: "Профессия" },
         completedMeetings: {
             path: "completedMeetings",
@@ -117,12 +123,11 @@ const Table = (props) => {
                 >
                     {count} {people(count)}
                 </button>
-                <table className="table">
+
+                <NewTable>
                     <TableHeader {...{ setSortBy, sortBy, columns }} />
-
                     <TableBody {...{ columns, data: userCrop }} />
-                </table>
-
+                </NewTable>
                 <Pagination
                     itemsCount={count}
                     pageSize={pageSize}

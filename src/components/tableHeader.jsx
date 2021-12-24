@@ -39,10 +39,6 @@ const TableHeader = ({ sortBy, columns, setSortBy }) => {
                             }}
                             scope="col"
                         >
-                            {console.log(
-                                "sortby",
-                                sortBy.path === columns[column].path
-                            )}
                             {columns[column].name}
                             {sortBy.path === columns[column].path
                                 ? sortBy.image

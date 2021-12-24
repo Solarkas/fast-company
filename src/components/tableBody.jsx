@@ -3,14 +3,16 @@ import _ from "lodash";
 
 const TableBody = ({ columns, data }) => {
     const renderContent = (item, column) => {
+        const newItem = { ...item };
+        newItem.name = <a href={`/users/${item._id}`}>{`${item.name}`}</a>;
         if (columns[column].component) {
             const component = columns[column].component;
             if (typeof component === "function") {
-                return component(item);
+                return component(newItem);
             }
             return component;
         }
-        return _.get(item, columns[column].path);
+        return _.get(newItem, columns[column].path);
     };
     return (
         <tbody>

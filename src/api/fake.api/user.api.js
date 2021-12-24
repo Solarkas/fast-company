@@ -111,9 +111,12 @@ export const users = [
         bookmark: false
     }
 ];
-// export function fetchAll() {
-//     return users;
-// }
+const getById = (id) =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(users.find((user) => user._id === id));
+        }, 1000);
+    });
 
 const fetchAll = () =>
     new Promise((resolve) => {
@@ -123,5 +126,6 @@ const fetchAll = () =>
     });
 
 export default {
-    fetchAll
+    fetchAll,
+    getById
 };

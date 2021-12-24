@@ -10,7 +10,6 @@ const Users = (props) => {
 
     const handleToggleBookMark = (id, setUser) =>
         list.users.map((element) => {
-            console.log(id, element);
             if (element.bookmark === false && element._id === id) {
                 return setUser((el) => {
                     let newUserList = {};
