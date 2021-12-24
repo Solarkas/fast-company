@@ -14,31 +14,36 @@ const App = () => {
     useEffect(() => {
         API.users.fetchAll().then((data) => setUsers(data));
     }, []);
-    return (
-        <>
-            {users && (
-                <div>
-                    <BrowserRouter>
-                        <NavBar />
-                        <Switch>
-                            <Route path="/login" component={Login} />
 
-                            <Route
-                                path="/users"
-                                exact
-                                render={() => <Accaunt users={users} />}
-                            />
-                            <Route
-                                path="/users/:userId?"
-                                render={(props) => <UserPage {...props} />}
-                            />
-                            <Route path="/" exact component={Home} />
-                        </Switch>
-                    </BrowserRouter>
-                </div>
-            )}
-        </>
-    );
+    if (users !== undefined) {
+        return (
+            <>
+                {users && (
+                    <div>
+                        <BrowserRouter>
+                            <NavBar />
+                            <Switch>
+                                <Route path="/login" component={Login} />
+
+                                <Route
+                                    path="/users"
+                                    exact
+                                    render={() => <Accaunt users={users} />}
+                                />
+                                <Route
+                                    path="/users/:userId?"
+                                    render={(props) => <UserPage {...props} />}
+                                />
+                                <Route path="/" exact component={Home} />
+                            </Switch>
+                        </BrowserRouter>
+                    </div>
+                )}
+            </>
+        );
+    } else {
+        return "Loading....";
+    }
 };
 
 export default App;
