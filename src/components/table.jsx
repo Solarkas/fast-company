@@ -33,6 +33,7 @@ const Table = (props) => {
     }, []);
 
     const handleProfessionSelect = (item) => {
+        setFilter();
         setSearch("");
         setSelectedProf(item);
     };
