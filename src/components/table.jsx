@@ -13,12 +13,15 @@ import handleTagChange from "./userDelete";
 import NewTable from "./newtable";
 import BookMark from "./bookmark";
 import QualitiesList from "./qualitiesList";
+import Search from "./pages/search";
 
 const Table = (props) => {
     const pageSize = 4;
     const [currentPage, setCurrentPage] = useState(1);
     const [bookMark] = useState(props);
+    const [searchFilter, setFilter] = useState();
     const [professions, setProfession] = useState();
+    const [dataSearch, setSearch] = useState("");
     const [selectedProf, setSelectedProf] = useState();
     const [sortBy, setSortBy] = useState({
         path: "name",
@@ -30,6 +33,7 @@ const Table = (props) => {
     }, []);
 
     const handleProfessionSelect = (item) => {
+        setSearch("");
         setSelectedProf(item);
     };
 
@@ -95,7 +99,27 @@ const Table = (props) => {
     const clearFilter = () => {
         setSelectedProf();
     };
+    let searchResult = "";
 
+    const handleSearch = ({ target }) => {
+        setSearch(target.value);
+
+        searchResult = props.users.filter((user) => {
+            const str = user.name;
+            const lowerName = str.replace(/\s+/g, " ").toLowerCase();
+
+            if (
+                (target.value.length > 0) &
+                (lowerName.indexOf(target.value.toLowerCase().trim()) > -1)
+            ) {
+                return user;
+            } else {
+                return false;
+            }
+        });
+        setFilter(searchResult);
+        setSelectedProf();
+    };
     return (
         <div className="d-flex">
             <div className="d-flex flex-column flex-shrink-0 p-3">
@@ -118,15 +142,30 @@ const Table = (props) => {
             <div className="d-flex flex-column">
                 <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn btn-primary mb-5"
                     style={{ width: 400 }}
                 >
                     {count} {people(count)}
                 </button>
-
+                <Search
+                    label="search"
+                    type="search"
+                    name="search"
+                    value={dataSearch}
+                    onChange={handleSearch}
+                />
                 <NewTable>
                     <TableHeader {...{ setSortBy, sortBy, columns }} />
-                    <TableBody {...{ columns, data: userCrop }} />
+                    <TableBody
+                        {...{
+                            columns,
+                            data:
+                                searchFilter === undefined ||
+                                searchFilter.length === 0
+                                    ? userCrop
+                                    : searchFilter
+                        }}
+                    />
                 </NewTable>
                 <Pagination
                     itemsCount={count}
