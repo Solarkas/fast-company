@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 // import Users from "./components/users";
 import API from "./api";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Accaunt from "./components/pages/accaunt";
-import Home from "./components/pages/home";
-import Login from "./components/pages/login";
-import NavBar from "./components/pages/navBar";
-import UserPage from "./components/pages/userPage";
+import Accaunt from "./components/layouts/accaunt";
+import Home from "./components/layouts/home";
+import Login from "./components/layouts/login";
+import NavBar from "./components/ui/navBar";
+import UserPage from "./components/pages/userPage/userPage";
 
 const App = () => {
     const [users, setUsers] = useState();
@@ -23,7 +23,7 @@ const App = () => {
                         <BrowserRouter>
                             <NavBar />
                             <Switch>
-                                <Route path="/login" component={Login} />
+                                <Route path="/login/:type?" component={Login} />
 
                                 <Route
                                     path="/users"
@@ -32,6 +32,7 @@ const App = () => {
                                 />
                                 <Route
                                     path="/users/:userId?"
+                                    exact
                                     render={(props) => <UserPage {...props} />}
                                 />
                                 <Route path="/" exact component={Home} />

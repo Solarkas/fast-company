@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "../index.css";
-import Table from "./table";
+import "../../../index.css";
+import Table from "../../common/table/table";
 
 const Users = (props) => {
     const [list, setUsers] = useState(props);

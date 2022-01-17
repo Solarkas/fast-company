@@ -30,5 +30,13 @@ const qualities = {
         color: "dark"
     }
 };
+const fetchAll = () =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(qualities);
+        }, 2000);
+    });
 
-export default qualities;
+export default {
+    fetchAll
+};

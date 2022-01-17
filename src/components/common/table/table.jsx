@@ -1,19 +1,19 @@
-import people from "./peopleCount";
+import people from "../../ui/peopleCount";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Pagination from "./pagination";
-import { paginate } from "../api/utils/paginate";
+import Pagination from "../pagination";
+import { paginate } from "../../../api/utils/paginate";
 import React, { useState, useEffect } from "react";
-import GroupList from "./groupList";
+import GroupList from "../groupList";
 
-import api from "../api";
+import api from "../../../api";
 import _ from "lodash";
 import TableHeader from "./tableHeader";
 import TableBody from "./tableBody";
-import handleTagChange from "./userDelete";
+import handleTagChange from "../userDelete";
 import NewTable from "./newtable";
-import BookMark from "./bookmark";
-import QualitiesList from "./qualitiesList";
-import Search from "./pages/search";
+import BookMark from "../bookmark";
+import QualitiesList from "../../ui/quailities/qualitiesList";
+import Search from "../../layouts/search";
 
 const Table = (props) => {
     const pageSize = 4;
