@@ -10,11 +10,10 @@ const TextCommentForm = ({ id, label, user, options }) => {
         setValue(e);
     };
     const handleButtonClick = (el) => {
-        const data = { ...[document.querySelector(".form-control").value] };
-        const a = Object.values(data);
-        console.log(el, a[0], user);
+        const data = document.querySelector(".form-control").value;
+
         API.comments
-            .add({ content: a[0], userId: el.value, pageId: user._id })
+            .add({ content: data, userId: el.value, pageId: user._id })
             .then((data) => setComment(...comments, data));
     };
     return (
