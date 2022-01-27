@@ -6,9 +6,8 @@ import SelectField from "../common/form/selectField";
 import RadioField from "../common/form/radioField";
 import MultiSelectField from "../common/form/multiSelectField";
 
-const UserEditForm = ({ user }) => {
+const UserEditForm = ({ user, qualities }) => {
     const [professions, setProfession] = useState();
-    const [qualities, setQualities] = useState({});
     const [errors, setErrors] = useState({});
     const [data, setData] = useState({
         name: user.name,
@@ -25,7 +24,6 @@ const UserEditForm = ({ user }) => {
 
     useEffect(() => {
         api.professions.fetchAll().then((data) => setProfession(data));
-        api.qualities.fetchAll().then((data) => setQualities(data));
     }, []);
 
     const handleChange = (target) => {
@@ -126,12 +124,22 @@ const UserEditForm = ({ user }) => {
                 onClick={(e) => {
                     user.profession.name = data.profession;
                     const a = data.qualities.map((event) => {
-                        return Object.values(qualities).filter((e) => {
-                            return e.name === event.label ? e : false;
-                        });
+                        if (qualities !== {}) {
+                            return Object.values(qualities).filter((e) => {
+                                if (e.name === event.name) {
+                                    return e;
+                                } else if (e.name === event.label) {
+                                    return e;
+                                } else {
+                                    return false;
+                                }
+                            });
+                        } else {
+                            return "loading...";
+                        }
                     });
                     const merged = [].concat.apply([], a);
-                    console.log(merged);
+
                     user.qualities = merged;
                     user.email = data.email;
                     user.sex = data.sex;
