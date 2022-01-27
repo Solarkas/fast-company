@@ -41,10 +41,12 @@ const fetchCommentsForUser = (userId) =>
             );
         }, 200);
     });
-const add = (data) =>
-    new Promise((resolve) => {
+const add = (data) => {
+    console.log(data);
+    return new Promise((resolve) => {
         window.setTimeout(function () {
             const comments = JSON.parse(localStorage.getItem("comments"));
+            console.log("comments", comments);
             const newComment = {
                 ...data,
                 created_at: Date.now(),
@@ -55,6 +57,7 @@ const add = (data) =>
             resolve(newComment);
         }, 200);
     });
+};
 
 const remove = (id) =>
     new Promise((resolve) => {

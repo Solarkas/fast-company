@@ -9,7 +9,6 @@ const UserPage = ({ match }) => {
     const [users, setUsers] = useState();
     const [qualities, setQualities] = useState({});
     const [userList, setUserList] = useState();
-
     const [pageChange, setPageChange] = useState(
         type === "edit" ? type : "user"
     );

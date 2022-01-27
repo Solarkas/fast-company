@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import QualitiesList from "../../ui/quailities/qualitiesList";
-import Select from "react-select";
 import CommentForm from "../../ui/commentForm";
+import TextCommentForm from "../../ui/textCommentForm";
 
 const UserRender = ({ user, users, toggleFormType }) => {
     const [data] = useState(users);
@@ -125,25 +125,12 @@ const UserRender = ({ user, users, toggleFormType }) => {
                         <div className="card-body">
                             <div>
                                 <h2>New comment</h2>
-                                <div className="mb-4">
-                                    <Select
-                                        options={optionsArray}
-                                        placeholder="Выберите пользователя"
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label
-                                        htmlFor="exampleFormControlTextarea1"
-                                        className="form-label"
-                                    >
-                                        Сообщение
-                                    </label>
-                                    <textarea
-                                        className="form-control"
-                                        id="exampleFormControlTextarea1"
-                                        rows="3"
-                                    ></textarea>
-                                </div>
+                                <TextCommentForm
+                                    id={user._id}
+                                    label="Сообщение"
+                                    user={user}
+                                    options={optionsArray}
+                                />
                             </div>
                         </div>
                     </div>
