@@ -1,24 +1,8 @@
-import React, { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import API from "../../api";
+import React from "react";
 
-const CommentForm = ({ users, user }) => {
-    const userId = user._id;
-    const [data, setData] = useState([]);
-    console.log(userId);
-
-    useEffect(() => {
-        API.comments.fetchCommentsForUser(userId).then((data) => setData(data));
-    }, []);
-
-    const handleClick = (id) => {
-        API.comments.remove(id).then((id) => {
-            setData(data.filter((el) => el._id !== id));
-        });
-    };
-    if (data[0] !== undefined) {
-        return data.map((e) => {
-            console.log(e);
+const CommentForm = ({ users, comments, deleteClick }) => {
+    if (comments[0] !== undefined) {
+        return comments.map((e) => {
             return users.map((el) => {
                 if (el._id === e.pageId) {
                     return (
@@ -49,7 +33,7 @@ const CommentForm = ({ users, user }) => {
                                                     <button
                                                         className="btn btn-sm text-primary d-flex align-items-center"
                                                         onClick={() =>
-                                                            handleClick(e._id)
+                                                            deleteClick(e._id)
                                                         }
                                                     >
                                                         <i className="bi bi-x-lg"></i>

@@ -49,7 +49,7 @@ const add = (data) => {
             console.log("comments", comments);
             const newComment = {
                 ...data,
-                created_at: Date.now(),
+                created_at: Date.now().toString(),
                 _id: Math.random().toString(36).substr(2, 9)
             };
             comments.push(newComment);

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import QualitiesList from "../../ui/quailities/qualitiesList";
-import CommentForm from "../../ui/commentForm";
-import TextCommentForm from "../../ui/textCommentForm";
+import Comments from "../../ui/comments";
 
 const UserRender = ({ user, users, toggleFormType }) => {
     const [data] = useState(users);
-
     const optionsArray = data.map((optionName) => ({
         label: optionName.name,
         value: optionName._id
@@ -121,27 +119,11 @@ const UserRender = ({ user, users, toggleFormType }) => {
                 </div>
 
                 <div className="col-md-8">
-                    <div className="card mb-2">
-                        <div className="card-body">
-                            <div>
-                                <h2>New comment</h2>
-                                <TextCommentForm
-                                    id={user._id}
-                                    label="Сообщение"
-                                    user={user}
-                                    options={optionsArray}
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="card mb-3">
-                        <div className="card-body">
-                            <h2>Comments</h2>
-                            <hr />
-                            <CommentForm users={users} user={user} />
-                        </div>
-                    </div>
+                    <Comments
+                        user={user}
+                        users={users}
+                        optionsArray={optionsArray}
+                    />
                 </div>
             </div>
         </div>
