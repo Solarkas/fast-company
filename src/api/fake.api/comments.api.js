@@ -36,7 +36,7 @@ const fetchCommentsForUser = (userId) =>
         window.setTimeout(function () {
             resolve(
                 JSON.parse(localStorage.getItem("comments")).filter(
-                    (c) => c.userId === userId
+                    (c) => c.pageId === userId
                 )
             );
         }, 200);
@@ -46,7 +46,7 @@ const add = (data) => {
     return new Promise((resolve) => {
         window.setTimeout(function () {
             const comments = JSON.parse(localStorage.getItem("comments"));
-            console.log("comments", comments);
+            // console.log("comments", comments);
             const newComment = {
                 ...data,
                 created_at: Date.now().toString(),

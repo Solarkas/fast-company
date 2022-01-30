@@ -1,14 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import QualitiesList from "../../ui/quailities/qualitiesList";
 import Comments from "../../ui/comments";
 
-const UserRender = ({ user, users, toggleFormType }) => {
-    const [data] = useState(users);
-    const optionsArray = data.map((optionName) => ({
-        label: optionName.name,
-        value: optionName._id
-    }));
-
+const UserRender = ({ user, toggleFormType }) => {
     return (
         <div className="container">
             <div className="row gutters-sm">
@@ -119,11 +113,7 @@ const UserRender = ({ user, users, toggleFormType }) => {
                 </div>
 
                 <div className="col-md-8">
-                    <Comments
-                        user={user}
-                        users={users}
-                        optionsArray={optionsArray}
-                    />
+                    <Comments />
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../api";
+import BackHistoryButton from "../../common/backButton";
 import UserEditForm from "../../ui/userEditForm";
 import UserRender from "./userRender";
 
@@ -23,20 +24,22 @@ const UserPage = ({ match }) => {
         api.qualities.fetchAll().then((data) => setQualities(data));
         api.users.fetchAll().then((data) => setUserList(data));
     }, []);
-
+    console.log(pageChange);
     if ((users !== undefined) & (userList !== undefined)) {
         return (
             <div>
                 {pageChange === "user" ? (
-                    <UserRender
-                        user={users}
-                        users={userList}
-                        toggleFormType={toggleFormType}
-                    />
+                    <UserRender user={users} toggleFormType={toggleFormType} />
                 ) : (
-                    <div className="col-md-6 offset-md-3 shadow p-4">
-                        <h3 className="mb-4">Edit your profile</h3>
-                        <UserEditForm user={users} qualities={qualities} />
+                    <div>
+                        <BackHistoryButton
+                            pageChange={pageChange}
+                            setPageChange={setPageChange}
+                        />
+                        <div className="col-md-6 offset-md-3 shadow p-4">
+                            <h3 className="mb-4">Edit your profile</h3>
+                            <UserEditForm user={users} qualities={qualities} />
+                        </div>
                     </div>
                 )}
             </div>

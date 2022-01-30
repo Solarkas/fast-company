@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import TextCommentForm from "./textCommentForm";
+import TextCommentForm from "../common/comments/textCommentForm";
 import api from "../../api";
+import CommentsList from "../common/comments/commentsList";
+import { orderBy } from "lodash";
 
-const Comments = ({ user, optionsArray, users }) => {
+const Comments = () => {
     const { userId } = useParams();
     const [comments, setComment] = useState([]);
 
@@ -13,19 +15,13 @@ const Comments = ({ user, optionsArray, users }) => {
             .then((data) => setComment(data));
     }, []);
 
-    const handleButtonClick = (el) => {
-        const data = document.querySelector(".form-control").value;
-
-        api.comments
-            .add({ content: data, userId: userId, pageId: el.value })
-            .then((data) => setComment(...comments, data));
-    };
-
-    const handleClick = (id) => {
+    const handleRemoveComment = (id) => {
         api.comments.remove(id).then((id) => {
             setComment(comments.filter((el) => el._id !== id));
         });
     };
+
+    const SortedComments = orderBy(comments, ["created_at"], ["desc"]);
 
     return (
         <div>
@@ -35,14 +31,18 @@ const Comments = ({ user, optionsArray, users }) => {
                         <h2>New comment</h2>
                         <TextCommentForm
                             id={userId}
-                            label="Сообщение"
-                            user={user}
-                            users={users}
-                            options={optionsArray}
                             comments={comments}
                             setComment={setComment}
-                            handleButtonClick={handleButtonClick}
-                            deleteClick={handleClick}
+                        />
+                    </div>
+                </div>
+                <div className="card mb-3">
+                    <div className="card-body">
+                        <h2>Comments</h2>
+                        <hr />
+                        <CommentsList
+                            comments={SortedComments}
+                            onRemove={handleRemoveComment}
                         />
                     </div>
                 </div>
